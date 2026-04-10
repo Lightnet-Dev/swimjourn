@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a1628">
-<meta name="description" content="Log and track your open water swimming sessions.">
 <title>Open Water Journal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0a1628;--water:#0d6b9e;--rip:#1aa3c8;--foam:#a8dff0;--mist:#e8f6fb;--cor:#e05c4b;--gld:#c8930a;--alg:#2a7c6b;--wht:#fff;--g:rgba(255,255,255,.06);--gb:rgba(255,255,255,.14);--r:16px;--rs:10px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--mist);min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;top:0;left:0;right:0;height:100vh;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(13,107,158,.45) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(26,163,200,.2) 0%,transparent 55%),linear-gradient(170deg,#0a1628 0%,#0d2540 45%,#0a1e38 100%);z-index:-2;pointer-events:none}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:100vh;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(13,107,158,.45) 0%,transparent 60%),linear-gradient(170deg,#0a1628 0%,#0d2540 45%,#0a1e38 100%);z-index:-2;pointer-events:none}
 body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='120'%3E%3Cpath d='M0 60 Q75 20 150 60 Q225 100 300 60 Q375 20 450 60 Q525 100 600 60' fill='none' stroke='rgba(26,163,200,0.04)' stroke-width='2'/%3E%3C/svg%3E");background-size:600px 120px;z-index:-1;animation:ws 20s linear infinite;pointer-events:none;opacity:.6}
 @keyframes ws{from{background-position:0 0}to{background-position:600px 0}}
 
@@ -32,15 +30,15 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .af input{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--rs);color:var(--wht);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;width:100%}
 .af input:focus{border-color:var(--rip);background:rgba(26,163,200,.1)}
 .af input::placeholder{color:rgba(168,223,240,.3)}
-.btn-auth{width:100%;background:linear-gradient(135deg,var(--water),var(--rip));color:var(--wht);border:none;padding:14px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 4px 20px rgba(13,107,158,.4);margin-top:6px;transition:opacity .2s,transform .1s}
-.btn-auth:hover{opacity:.9;transform:translateY(-1px)}
-.btn-auth:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-auth{width:100%;background:linear-gradient(135deg,var(--water),var(--rip));color:var(--wht);border:none;padding:14px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 4px 20px rgba(13,107,158,.4);margin-top:6px;transition:opacity .2s}
+.btn-auth:hover{opacity:.9}
+.btn-auth:disabled{opacity:.5;cursor:not-allowed}
 .auth-err{background:rgba(224,92,75,.15);border:1px solid rgba(224,92,75,.3);color:#f08060;padding:10px 14px;border-radius:var(--rs);font-size:.82rem;margin-bottom:14px;display:none}
 .auth-err.show{display:block}
 .auth-ok{background:rgba(42,124,107,.15);border:1px solid rgba(42,124,107,.3);color:#4ecab5;padding:10px 14px;border-radius:var(--rs);font-size:.82rem;margin-bottom:14px;display:none}
 .auth-ok.show{display:block}
 .forgot{text-align:center;margin-top:14px}
-.forgot a{font-size:.78rem;color:var(--rip);text-decoration:none;cursor:pointer}
+.forgot a{font-size:.78rem;color:var(--rip);cursor:pointer}
 
 /* APP */
 #mainApp{display:none}
@@ -48,14 +46,13 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:28px 0 32px;gap:16px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:14px}
 .logo{width:52px;height:52px;background:linear-gradient(135deg,var(--water),var(--rip));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 0 0 4px rgba(26,163,200,.15);animation:fl 4s ease-in-out infinite}
-.brand h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--wht)}
+.brand h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--wht)}
 .brand p{font-size:.78rem;font-weight:300;color:var(--foam);opacity:.7;margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
 .hdr-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .upill{background:var(--g);border:1px solid var(--gb);border-radius:50px;padding:7px 14px;font-size:.78rem;color:var(--foam);display:flex;align-items:center;gap:7px}
 .uav{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--water),var(--rip));display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--wht);flex-shrink:0}
 .sdot{width:7px;height:7px;border-radius:50%;background:#4ecab5;flex-shrink:0}
-.sdot.off{background:var(--cor)}
-.sdot.syn{background:var(--gld);animation:pulse 1s ease-in-out infinite}
+.sdot.off{background:var(--cor)}.sdot.syn{background:var(--gld);animation:pulse 1s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .sync-s{font-size:.72rem;color:var(--foam);opacity:.5;display:flex;align-items:center;gap:5px}
 .btn-g{background:var(--g);border:1px solid var(--gb);color:var(--foam);padding:9px 16px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;backdrop-filter:blur(10px)}
@@ -65,17 +62,17 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .claim-banner{background:rgba(200,147,10,.12);border:1px solid rgba(200,147,10,.3);border-radius:var(--rs);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .claim-banner p{font-size:.85rem;color:#f0b429;line-height:1.4}
 .claim-banner strong{color:var(--wht)}
-.btn-claim{background:linear-gradient(135deg,var(--gld),#e8a012);color:var(--wht);border:none;padding:10px 18px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .2s}
-.btn-claim:hover{opacity:.85}
+.btn-claim{background:linear-gradient(135deg,var(--gld),#e8a012);color:var(--wht);border:none;padding:10px 18px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap}
 .btn-claim:disabled{opacity:.5;cursor:not-allowed}
 
 /* TABS */
-.tabs{display:flex;gap:4px;background:rgba(255,255,255,.05);border-radius:50px;padding:4px;margin-bottom:28px;border:1px solid rgba(255,255,255,.08);max-width:460px}
+.tabs{display:flex;gap:4px;background:rgba(255,255,255,.05);border-radius:50px;padding:4px;margin-bottom:28px;border:1px solid rgba(255,255,255,.08);max-width:420px}
 .tab{flex:1;padding:9px 14px;border-radius:50px;border:none;background:none;color:rgba(168,223,240,.6);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .25s;white-space:nowrap}
 .tab.active{background:linear-gradient(135deg,var(--water),var(--rip));color:var(--wht);box-shadow:0 2px 12px rgba(13,107,158,.5)}
-.panel{display:none}
-.panel.active{display:block;animation:fu .3s ease}
+.panel{display:none}.panel.active{display:block;animation:fu .3s ease}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARDS */
 .gc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);backdrop-filter:blur(20px)}
 .gc.el{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);box-shadow:0 20px 60px rgba(10,22,40,.3)}
 
@@ -92,24 +89,21 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .lf{padding:24px;margin-bottom:24px}
 .lf h2{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--foam);margin-bottom:18px}
 .fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;align-items:end}
-.f{display:flex;flex-direction:column;gap:6px}
-.f.sp{grid-column:1/-1}
+.f{display:flex;flex-direction:column;gap:6px}.f.sp{grid-column:1/-1}
 .f label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--foam);opacity:.7}
-.f input,.f select,.f textarea{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--rs);color:var(--wht);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s,background .2s;width:100%}
+.f input,.f select,.f textarea{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--rs);color:var(--wht);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;width:100%}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--rip);background:rgba(26,163,200,.1)}
 .f select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='rgba(168,223,240,0.5)'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
-.f select option{background:#0d2540}
-.f textarea{resize:vertical;min-height:60px}
+.f select option{background:#0d2540}.f textarea{resize:vertical;min-height:60px}
 .f input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.8);cursor:pointer}
 .pw{display:flex;align-items:center;gap:10px}
 .ppr{width:44px;height:44px;border-radius:8px;object-fit:cover;border:2px solid var(--rip);display:none}
-.fb{background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.2);color:var(--foam);padding:10px 14px;border-radius:var(--rs);cursor:pointer;font-size:.82rem;text-align:center;flex:1;transition:background .2s}
+.fb{background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.2);color:var(--foam);padding:10px 14px;border-radius:var(--rs);cursor:pointer;font-size:.82rem;text-align:center;flex:1}
 .fb:hover{background:rgba(255,255,255,.12)}
 .fa{display:flex;gap:10px;margin-top:18px}
-.btn-p{flex:1;background:linear-gradient(135deg,var(--water),var(--rip));color:var(--wht);border:none;padding:13px 20px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;box-shadow:0 4px 20px rgba(13,107,158,.4)}
-.btn-p:hover{opacity:.9;transform:translateY(-1px)}
-.btn-p:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.btn-s{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--foam);padding:13px 18px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.9rem;cursor:pointer;transition:background .2s}
+.btn-p{flex:1;background:linear-gradient(135deg,var(--water),var(--rip));color:var(--wht);border:none;padding:13px 20px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:opacity .2s;box-shadow:0 4px 20px rgba(13,107,158,.4)}
+.btn-p:hover{opacity:.9}.btn-p:disabled{opacity:.5;cursor:not-allowed}
+.btn-s{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--foam);padding:13px 18px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.9rem;cursor:pointer}
 .btn-s:hover{background:rgba(255,255,255,.12)}
 .lf.editing{border-color:rgba(26,163,200,.4)!important;background:rgba(26,163,200,.06)!important}
 
@@ -125,9 +119,8 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .tw{overflow-x:auto;border-radius:var(--r)}
 .tbl{width:100%;border-collapse:collapse;min-width:600px}
 .tbl thead tr{border-bottom:1px solid rgba(255,255,255,.08)}
-.tbl th{padding:12px 16px;text-align:left;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--foam);opacity:.6;cursor:pointer;user-select:none;white-space:nowrap;transition:opacity .15s}
-.tbl th:hover{opacity:1}
-.tbl th.sorted{opacity:1;color:var(--rip)}
+.tbl th{padding:12px 16px;text-align:left;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--foam);opacity:.6;cursor:pointer;user-select:none;white-space:nowrap}
+.tbl th:hover{opacity:1}.tbl th.sorted{opacity:1;color:var(--rip)}
 .tbl tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s}
 .tbl tbody tr:hover{background:rgba(255,255,255,.04)}
 .tbl td{padding:12px 16px;vertical-align:middle;font-size:.85rem;color:rgba(232,246,251,.85)}
@@ -136,7 +129,6 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .lr{display:flex;align-items:center;gap:5px;margin-top:2px}
 .lr span{font-size:.72rem;color:var(--foam);opacity:.65}
 .lr a{color:var(--rip);text-decoration:none;font-size:.75rem}
-.lr a:hover{color:var(--foam)}
 .tbadge{display:inline-block;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:600;white-space:nowrap}
 .t-ice{background:rgba(100,200,255,.15);color:#64c8ff;border:1px solid rgba(100,200,255,.25)}
 .t-cold{background:rgba(26,163,200,.15);color:#1aa3c8;border:1px solid rgba(26,163,200,.25)}
@@ -155,7 +147,6 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .br2:hover{opacity:1;background:rgba(255,255,255,.08)}
 .empty{text-align:center;padding:60px 20px;color:var(--foam);opacity:.4}
 .empty .emo{font-size:3rem;display:block;margin-bottom:12px}
-.lrow td{text-align:center;padding:40px;color:var(--foam);opacity:.5;font-size:.9rem}
 
 /* INSIGHTS */
 .ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
@@ -169,8 +160,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .frow{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .frow:last-child{border-bottom:none}
 .fi{font-size:1.1rem;flex-shrink:0;width:26px;text-align:center;margin-top:1px}
-.ft{font-size:.82rem;color:rgba(232,246,251,.75);line-height:1.4}
-.ft strong{color:var(--wht)}
+.ft{font-size:.82rem;color:rgba(232,246,251,.75);line-height:1.4}.ft strong{color:var(--wht)}
 .yc{padding:20px}
 .yc h3{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--foam);opacity:.6;margin-bottom:14px}
 .mbs{display:flex;align-items:flex-end;gap:6px;height:100px}
@@ -179,13 +169,10 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .mc2l{font-size:.6rem;color:var(--foam);opacity:.5}
 .mc2v{font-size:.65rem;color:var(--foam);opacity:.7;font-weight:600}
 
-/* LIGHTBOX */
+/* LIGHTBOX / MODAL / TOAST */
 .lb{display:none;position:fixed;inset:0;background:rgba(10,22,40,.92);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(20px);cursor:pointer}
-.lb.open{display:flex;animation:fi2 .2s}
-@keyframes fi2{from{opacity:0}to{opacity:1}}
+.lb.open{display:flex}
 .lb img{max-width:90vw;max-height:85vh;border-radius:var(--r)}
-
-/* MODAL */
 .mo{display:none;position:fixed;inset:0;background:rgba(10,22,40,.85);z-index:1000;align-items:flex-end;justify-content:center;backdrop-filter:blur(12px)}
 .mo.open{display:flex}
 .mb{background:#0f2035;border:1px solid rgba(255,255,255,.1);border-radius:var(--r) var(--r) 0 0;padding:28px 24px;width:100%;max-width:500px;animation:su .25s ease}
@@ -195,11 +182,8 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .mba{display:flex;gap:10px}
 .btn-d{background:rgba(224,92,75,.2);border:1px solid rgba(224,92,75,.4);color:#f08060;padding:11px 20px;border-radius:var(--rs);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem}
 .btn-d:hover{background:rgba(224,92,75,.35)}
-
-/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(13,107,158,.95);color:var(--wht);padding:12px 24px;border-radius:50px;font-size:.85rem;font-weight:500;z-index:9000;transition:transform .35s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.15)}
-.toast.show{transform:translateX(-50%) translateY(0)}
-.toast.err{background:rgba(224,92,75,.95)}
+.toast.show{transform:translateX(-50%) translateY(0)}.toast.err{background:rgba(224,92,75,.95)}
 
 /* EXPORT */
 .ep{padding:24px}
@@ -208,21 +192,22 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .ec{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--rs);padding:18px 16px;text-align:center;cursor:pointer;transition:background .2s,transform .15s}
 .ec:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 .ec .ei{font-size:2rem;display:block;margin-bottom:8px}
-.ec .et{font-size:.82rem;font-weight:600;color:var(--wht)}
-.ec .ed{font-size:.72rem;color:var(--foam);opacity:.55;margin-top:3px}
+.ec .et{font-size:.82rem;font-weight:600;color:var(--wht)}.ec .ed{font-size:.72rem;color:var(--foam);opacity:.55;margin-top:3px}
+.isec{margin-top:20px;padding:20px;background:rgba(255,255,255,.03);border-radius:var(--rs);border:1px dashed rgba(255,255,255,.1)}
+.isec h3{font-size:.8rem;font-weight:600;color:var(--foam);margin-bottom:6px}
+.isec p{font-size:.78rem;color:var(--foam);opacity:.55;margin-bottom:12px;line-height:1.5}
 
-@media print{body{background:white;color:#111}body::before,body::after,.tabs,.lf,.fbar,.ra,.hdr-r,#authScreen{display:none!important}}
+@media print{body{background:white;color:#111}body::before,body::after,.tabs,.lf,.fbar,.ra,.btn-g,.hdr-r,#authScreen,.claim-banner{display:none!important}}
 @media(max-width:640px){.tbl th:nth-child(4),.tbl td:nth-child(4),.tbl th:nth-child(5),.tbl td:nth-child(5){display:none}.tabs{max-width:100%}.ig{grid-template-columns:1fr}}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-thumb{background:rgba(168,223,240,.2);border-radius:3px}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:rgba(168,223,240,.2);border-radius:3px}
 </style>
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- AUTH -->
 <div id="authScreen">
   <div class="auth-box">
-    <div class="auth-logo">🌊</div>
+    <div class="auth-logo">&#x1F30A;</div>
     <h1>Open Water Journal</h1>
     <p class="auth-sub">Track every plunge</p>
     <div class="auth-tabs">
@@ -230,22 +215,19 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
       <button class="auth-tab" id="tabSU" onclick="showTab('su')">Create Account</button>
     </div>
     <div id="authErr" class="auth-err"></div>
-    <div id="authOk" class="auth-ok"></div>
-
+    <div id="authOk"  class="auth-ok"></div>
     <div id="fSI">
       <div class="af"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email"></div>
       <div class="af"><label>Password</label><input type="password" id="siPw" placeholder="Your password" autocomplete="current-password" onkeydown="if(event.key==='Enter')signIn()"></div>
       <button class="btn-auth" id="btnSI" onclick="signIn()">Sign In &#x2192;</button>
       <div class="forgot"><a onclick="showTab('fr')">Forgot password?</a></div>
     </div>
-
     <div id="fSU" style="display:none">
       <div class="af"><label>Email</label><input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email"></div>
       <div class="af"><label>Password</label><input type="password" id="suPw" placeholder="Min 6 characters" autocomplete="new-password"></div>
       <div class="af"><label>Confirm Password</label><input type="password" id="suPw2" placeholder="Repeat password" autocomplete="new-password" onkeydown="if(event.key==='Enter')signUp()"></div>
       <button class="btn-auth" id="btnSU" onclick="signUp()">Create Account &#x2192;</button>
     </div>
-
     <div id="fFR" style="display:none">
       <p style="font-size:.85rem;color:var(--foam);opacity:.7;margin-bottom:16px;line-height:1.5">Enter your email and we'll send a reset link.</p>
       <div class="af"><label>Email</label><input type="email" id="frEmail" placeholder="you@example.com"></div>
@@ -260,18 +242,19 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 <div class="app">
   <header class="hdr">
     <div class="brand">
-      <div class="logo">🌊</div>
+      <div class="logo">&#x1F30A;</div>
       <div><h1>Open Water Journal</h1><p>Track every plunge</p></div>
     </div>
     <div class="hdr-r">
       <div class="sync-s"><div class="sdot" id="sdot"></div><span id="slbl">Loading...</span></div>
       <div class="upill"><div class="uav" id="uav"></div><span id="uem" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span></div>
-      <button class="btn-g" onclick="signOut()">Sign Out</button>
+      <button class="btn-g" onclick="loadSwims()">&#x21BB; Refresh</button>
+      <button class="btn-g" onclick="signOut()" style="border-color:rgba(224,92,75,.3);color:#f08060">Sign Out</button>
     </div>
   </header>
 
   <div class="claim-banner" id="claimBanner" style="display:none">
-    <p>&#x1F44B; Welcome! There are <strong id="claimCount">0</strong> historical swims not yet linked to any account.</p>
+    <p>&#x1F44B; Welcome! There are historical swims not yet linked to any account. <strong>Are these yours?</strong></p>
     <button class="btn-claim" id="claimBtn" onclick="claimSwims()">Claim My Swims &#x2192;</button>
   </div>
 
@@ -281,6 +264,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
     <button class="tab" onclick="switchTab(this,'export')">&#x2B07; Export</button>
   </div>
 
+  <!-- JOURNAL -->
   <div class="panel active" id="panel-journal">
     <div class="gc el lf" id="logForm">
       <h2 id="formTitle">&#x1F3CA; Log a New Swim</h2>
@@ -291,14 +275,11 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
           <label>&#x1F4CD; Location</label>
           <input type="text" id="inLocation" list="locationList" placeholder="e.g. Watersedge" autocomplete="off">
           <datalist id="locationList">
-            <option value="Watersedge">
-            <option value="Escape to the Lake">
-            <option value="The Lenches">
-            <option value="Wild Wood">
-            <option value="Broadfields">
+            <option value="Watersedge"><option value="Escape to the Lake">
+            <option value="The Lenches"><option value="Wild Wood"><option value="Broadfields">
           </datalist>
         </div>
-        <div class="f"><label>Temp C</label><input type="number" id="inTemp" step="0.1" placeholder="14.5"></div>
+        <div class="f"><label>&#x1F321; Temp &#xB0;C</label><input type="number" id="inTemp" step="0.1" placeholder="14.5"></div>
         <div class="f">
           <label>&#x23F1; Duration</label>
           <div style="display:flex;gap:6px;align-items:center">
@@ -334,12 +315,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
     </div>
 
     <div class="stats" id="statsStrip"></div>
+
     <div class="fbar">
       <input type="text" id="filterText" placeholder="Search notes or location..." oninput="applyFilters()" style="flex:1;min-width:180px">
       <select id="filterLoc" onchange="applyFilters()"><option value="">All locations</option></select>
       <select id="filterYear" onchange="applyFilters()"><option value="">All years</option></select>
       <span class="fc2" id="fcount"></span>
     </div>
+
     <div class="gc tw">
       <table class="tbl">
         <thead><tr>
@@ -351,11 +334,12 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
           <th>Notes</th>
           <th style="width:72px"></th>
         </tr></thead>
-        <tbody id="swimBody"><tr class="lrow"><td colspan="7">Loading your swims...</td></tr></tbody>
+        <tbody id="swimBody"><tr><td colspan="7" style="text-align:center;padding:40px;opacity:.5">Loading your swims...</td></tr></tbody>
       </table>
     </div>
   </div>
 
+  <!-- INSIGHTS -->
   <div class="panel" id="panel-insights">
     <div class="stats" id="statsIns"></div>
     <div class="ig">
@@ -365,6 +349,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
     <div class="gc yc"><h3>Activity This Year</h3><div class="mbs" id="yearBars"></div></div>
   </div>
 
+  <!-- EXPORT -->
   <div class="panel" id="panel-export">
     <div class="gc ep">
       <h2>Export Your Data</h2>
@@ -372,9 +357,13 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
         <div class="ec" onclick="exportCSV()"><span class="ei">&#x1F4CA;</span><div class="et">Export CSV</div><div class="ed">Open in Excel or Sheets</div></div>
         <div class="ec" onclick="exportJSON()"><span class="ei">&#x1F5C2;</span><div class="et">Export JSON</div><div class="ed">Full data backup</div></div>
         <div class="ec" onclick="window.print()"><span class="ei">&#x1F5A8;</span><div class="et">Print / PDF</div><div class="ed">Print-friendly view</div></div>
-        <div class="ec" onclick="document.getElementById('impFile').click()"><span class="ei">&#x1F4E5;</span><div class="et">Import JSON</div><div class="ed">Add swims from backup</div></div>
       </div>
-      <input type="file" id="impFile" hidden accept=".json" onchange="doImport(this)">
+      <div class="isec">
+        <h3>Import from Backup</h3>
+        <p>Restore swims from a previously exported JSON file. Records will be added to your account.</p>
+        <button class="btn-g" onclick="document.getElementById('impFile').click()">Choose JSON file...</button>
+        <input type="file" id="impFile" hidden accept=".json" onchange="doImport(this)">
+      </div>
     </div>
   </div>
 </div>
@@ -384,7 +373,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 <div class="mo" id="delMo">
   <div class="mb">
     <h3>Delete this swim?</h3>
-    <p>This will permanently remove the swim from your journal.</p>
+    <p>This will permanently remove the swim from your database.</p>
     <div class="mba">
       <button class="btn-d" id="confDel">Yes, delete it</button>
       <button class="btn-s" onclick="closeDelMo()">Cancel</button>
@@ -398,15 +387,10 @@ const SB='https://drhgubxbuaqoujlmmzbh.supabase.co';
 const AK='sb_publishable_MtB-fZpicnbTEp4Nb5iN7g_fRGmfdr3';
 const ML={'Watersedge':'https://www.google.com/maps/search/Watersedge+Pershore','Escape to the Lake':'https://www.google.com/maps/search/Escape+to+the+Lake+Worcester','The Lenches':'https://www.google.com/maps/search/Lenches+Lakes+Evesham','Wild Wood':'https://www.google.com/maps/search/Wild+Wood+Leigh+Sinton','Broadfields':'https://www.google.com/maps/search/Broadfields+Wild+Swimming'};
 
-let sess=null,allSwims=[],filtSwims=[],sk='date',sa=false,pdel=null;
+let sess=null,allSwims=[],filtSwims=[],sortKey='date',sortAsc=false,pendingDel=null;
 
-/* ── AUTH API ── */
-async function aFetch(path,body){
-  const r=await fetch(SB+'/auth/v1/'+path,{method:'POST',headers:{'Content-Type':'application/json','apikey':AK},body:JSON.stringify(body)});
-  const d=await r.json();
-  if(!r.ok)throw new Error(d.error_description||d.msg||d.message||'Auth error');
-  return d;
-}
+async function aFetch(path,body){const r=await fetch(SB+'/auth/v1/'+path,{method:'POST',headers:{'Content-Type':'application/json','apikey':AK},body:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw new Error(d.error_description||d.msg||d.message||'Auth error');return d;}
+
 async function sbFetch(path,opts={}){
   if(!sess||!sess.access_token)throw new Error('Not authenticated');
   const h={'Content-Type':'application/json','apikey':AK,'Authorization':'Bearer '+sess.access_token,'Prefer':'return=representation',...(opts.headers||{})};
@@ -415,16 +399,11 @@ async function sbFetch(path,opts={}){
   const t=await r.text();return t?JSON.parse(t):null;
 }
 
-/* ── SESSION ── */
 function saveSess(s){sess=s;s?localStorage.setItem('owj_s',JSON.stringify(s)):localStorage.removeItem('owj_s');}
-async function refreshSess(rt){
-  try{const d=await aFetch('token?grant_type=refresh_token',{refresh_token:rt});saveSess({access_token:d.access_token,refresh_token:d.refresh_token,user:d.user});return true;}
-  catch{return false;}
-}
+async function refreshSess(rt){try{const d=await aFetch('token?grant_type=refresh_token',{refresh_token:rt});saveSess({access_token:d.access_token,refresh_token:d.refresh_token,user:d.user});return true;}catch{return false;}}
 
-/* ── AUTH UI ── */
 function showTab(t){
-  ['SI','SU','FR'].forEach(x=>{document.getElementById('f'+x).style.display='none';});
+  ['SI','SU','FR'].forEach(x=>document.getElementById('f'+x).style.display='none');
   document.getElementById('f'+t.toUpperCase()).style.display='';
   document.querySelectorAll('.auth-tab').forEach(b=>b.classList.remove('active'));
   if(t==='si')document.getElementById('tabSI').classList.add('active');
@@ -440,31 +419,24 @@ async function signIn(){
   if(!em||!pw)return setAErr('Please enter your email and password.');
   const btn=document.getElementById('btnSI');btn.disabled=true;btn.textContent='Signing in...';
   try{const d=await aFetch('token?grant_type=password',{email:em,password:pw});saveSess({access_token:d.access_token,refresh_token:d.refresh_token,user:d.user});enterApp();}
-  catch(e){setAErr(e.message);}
-  finally{btn.disabled=false;btn.textContent='Sign In \u2192';}
+  catch(e){setAErr(e.message);}finally{btn.disabled=false;btn.textContent='Sign In →';}
 }
-
 async function signUp(){
   const em=document.getElementById('suEmail').value.trim(),p1=document.getElementById('suPw').value,p2=document.getElementById('suPw2').value;
   if(!em)return setAErr('Please enter your email.');
   if(p1.length<6)return setAErr('Password must be at least 6 characters.');
   if(p1!==p2)return setAErr('Passwords do not match.');
   const btn=document.getElementById('btnSU');btn.disabled=true;btn.textContent='Creating...';
-  try{
-    const d=await aFetch('signup',{email:em,password:p1});
+  try{const d=await aFetch('signup',{email:em,password:p1});
     if(d.access_token){saveSess({access_token:d.access_token,refresh_token:d.refresh_token,user:d.user});enterApp();}
     else setAOk('Account created! Check your email to confirm, then sign in.');
-  }catch(e){setAErr(e.message);}
-  finally{btn.disabled=false;btn.textContent='Create Account \u2192';}
+  }catch(e){setAErr(e.message);}finally{btn.disabled=false;btn.textContent='Create Account →';}
 }
-
 async function sendReset(){
   const em=document.getElementById('frEmail').value.trim();
   if(!em)return setAErr('Please enter your email.');
-  try{await aFetch('recover',{email:em});setAOk('Reset email sent! Check your inbox.');}
-  catch(e){setAErr(e.message);}
+  try{await aFetch('recover',{email:em});setAOk('Reset email sent! Check your inbox.');}catch(e){setAErr(e.message);}
 }
-
 async function signOut(){
   try{await fetch(SB+'/auth/v1/logout',{method:'POST',headers:{'apikey':AK,'Authorization':'Bearer '+sess.access_token}});}catch{}
   saveSess(null);allSwims=[];filtSwims=[];
@@ -473,7 +445,6 @@ async function signOut(){
   document.getElementById('siEmail').value='';document.getElementById('siPw').value='';
 }
 
-/* ── ENTER APP ── */
 function enterApp(){
   document.getElementById('authScreen').style.display='none';
   document.getElementById('mainApp').style.display='block';
@@ -484,28 +455,13 @@ function enterApp(){
   loadSwims();
 }
 
-/* ── CLAIM ── */
-async function checkClaim(){
-  // Show claim banner only if this user has zero swims of their own.
-  // We can't query NULL user_id rows directly (RLS blocks it), so instead:
-  // if user has 0 swims → they probably haven't claimed yet → show banner.
-  const banner = document.getElementById('claimBanner');
-  if(allSwims.length === 0){
-    banner.style.display='flex';
-  } else {
-    banner.style.display='none';
-  }
+function checkClaim(){
+  document.getElementById('claimBanner').style.display=allSwims.length===0?'flex':'none';
 }
 async function claimSwims(){
   const btn=document.getElementById('claimBtn');btn.disabled=true;btn.textContent='Claiming...';
   try{
-    // Call our Supabase RPC function which runs as SECURITY DEFINER
-    // so it can update rows where user_id IS NULL
-    const r=await fetch(SB+'/rest/v1/rpc/claim_swims',{
-      method:'POST',
-      headers:{'apikey':AK,'Authorization':'Bearer '+sess.access_token,'Content-Type':'application/json'},
-      body:JSON.stringify({claiming_user_id:sess.user.id})
-    });
+    const r=await fetch(SB+'/rest/v1/rpc/claim_swims',{method:'POST',headers:{'apikey':AK,'Authorization':'Bearer '+sess.access_token,'Content-Type':'application/json'},body:JSON.stringify({claiming_user_id:sess.user.id})});
     if(!r.ok){const e=await r.json();throw new Error(e.message||e.hint||'Claim failed');}
     document.getElementById('claimBanner').style.display='none';
     toast('All historical swims claimed to your account!');
@@ -513,33 +469,33 @@ async function claimSwims(){
   }catch(e){toast('Claim failed: '+e.message,true);btn.disabled=false;btn.textContent='Claim My Swims →';}
 }
 
-/* ── SYNC ── */
 function setSS(s,l){const d=document.getElementById('sdot');d.className='sdot'+(s==='off'?' off':s==='syn'?' syn':'');document.getElementById('slbl').textContent=l;}
 
 async function loadSwims(){
   setSS('syn','Loading...');
-  try{const uid=sess&&sess.user?sess.user.id:null;if(!uid)throw new Error('Not signed in');const d=await sbFetch('swims?user_id=eq.'+uid+'&select=*&order=date.desc');allSwims=d||[];setSS('on',allSwims.length+' swims synced');checkClaim();popFilters();applyFilters();}
-  catch(e){setSS('off','Error');toast('Could not load: '+e.message,true);document.getElementById('swimBody').innerHTML='<tr class="lrow"><td colspan="7">Could not connect to database.</td></tr>';}
+  try{
+    const uid=sess&&sess.user?sess.user.id:null;
+    if(!uid)throw new Error('Not signed in');
+    const d=await sbFetch('swims?user_id=eq.'+uid+'&select=*&order=date.desc');
+    allSwims=d||[];
+    setSS('on',allSwims.length+' swims synced');
+    checkClaim();popFilters();applyFilters();
+  }catch(e){
+    setSS('off','Error');
+    toast('Could not load: '+e.message,true);
+    document.getElementById('swimBody').innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;opacity:.5">Could not connect to database.</td></tr>';
+  }
 }
 
-/* ── HELPERS ── */
 function t2m(s){if(!s)return 0;const[m,sc]=String(s).split(':').map(Number);return m+(sc||0)/60;}
 function tc(t){if(t<=5)return't-ice';if(t<=10)return't-cold';if(t<=15)return't-cool';if(t<=20)return't-warm';return't-hot';}
 function tl(t){if(t<=5)return t.toFixed(1)+'C (Ice)';if(t>=25)return t.toFixed(1)+'C (Hot!)';return t.toFixed(1)+'C';}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function toast(msg,e=false,d=3000){const el=document.getElementById('toast');el.textContent=msg;el.className='toast show'+(e?' err':'');setTimeout(()=>el.classList.remove('show'),d);}
+function toast(msg,isErr=false,d=3000){const el=document.getElementById('toast');el.textContent=msg;el.className='toast show'+(isErr?' err':'');setTimeout(()=>el.classList.remove('show'),d);}
 function dl(c,f,t){const b=new Blob([c],{type:t});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=f;a.click();URL.revokeObjectURL(a.href);}
 
-/* ── TABS ── */
-function switchTab(btn,n){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');document.getElementById('panel-'+n).classList.add('active');
-  if(n==='insights')renderIns();
-}
+function switchTab(btn,n){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+n).classList.add('active');if(n==='insights')renderIns();}
 
-/* ── FORM ── */
-function toggleCL(s){}  // location uses datalist now
 function prevImg(input){
   const p=document.getElementById('ppr');
   if(!input.files||!input.files[0])return;
@@ -547,57 +503,30 @@ function prevImg(input){
   reader.onload=function(e){
     const img=new Image();
     img.onload=function(){
-      const MAX=800;
-      let w=img.width,h=img.height;
+      const MAX=800;let w=img.width,h=img.height;
       if(w>MAX||h>MAX){if(w>h){h=Math.round(h*(MAX/w));w=MAX;}else{w=Math.round(w*(MAX/h));h=MAX;}}
-      const canvas=document.createElement('canvas');
-      canvas.width=w;canvas.height=h;
+      const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
       canvas.getContext('2d').drawImage(img,0,0,w,h);
       const resized=canvas.toDataURL('image/jpeg',0.82);
-      p.src=resized;p.style.display='block';
-      input._resized=resized;
-    };
-    img.src=e.target.result;
-  };
-  reader.readAsDataURL(input.files[0]);
+      p.src=resized;p.style.display='block';input._resized=resized;
+    };img.src=e.target.result;
+  };reader.readAsDataURL(input.files[0]);
 }
 
 async function saveEntry(){
   const eid=document.getElementById('editId').value;
-  const ls=document.getElementById('inLocation').value;
   const file=document.getElementById('inPhoto').files[0];
   const photo=await new Promise(res=>{
-    if(file&&file._resized){
-      // Use the already-resized version from prevImg
-      res(file._resized);
-    } else if(file){
-      // Fallback: resize now if prevImg wasn't called (e.g. programmatic)
-      const r=new FileReader();
-      r.onloadend=()=>{
-        const img=new Image();
-        img.onload=()=>{
-          const MAX=800;let w=img.width,h=img.height;
-          if(w>MAX||h>MAX){if(w>h){h=Math.round(h*(MAX/w));w=MAX;}else{w=Math.round(w*(MAX/h));h=MAX;}}
-          const c=document.createElement('canvas');c.width=w;c.height=h;
-          c.getContext('2d').drawImage(img,0,0,w,h);
-          res(c.toDataURL('image/jpeg',0.82));
-        };
-        img.src=r.result;
-      };
-      r.readAsDataURL(file);
-    } else {
-      res(eid?(allSwims.find(s=>s.id===eid)||{}).photo:null);
-    }
+    if(file&&file._resized){res(file._resized);}
+    else if(file){const r=new FileReader();r.onloadend=()=>{const img=new Image();img.onload=()=>{const MAX=800;let w=img.width,h=img.height;if(w>MAX||h>MAX){if(w>h){h=Math.round(h*(MAX/w));w=MAX;}else{w=Math.round(w*(MAX/h));h=MAX;}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',0.82));};img.src=r.result;};r.readAsDataURL(file);}
+    else res(eid?(allSwims.find(s=>s.id===eid)||{}).photo:null);
   });
+  const mins=parseInt(document.getElementById('inTimeMins').value)||0;
+  const secs=parseInt(document.getElementById('inTimeSecs').value)||0;
   const entry={
     date:document.getElementById('inDate').value,
     temp:parseFloat(document.getElementById('inTemp').value),
-    time:(()=>{
-      const m=parseInt(document.getElementById('inTimeMins').value)||0;
-      const s=parseInt(document.getElementById('inTimeSecs').value)||0;
-      if(m===0&&s===0)return null;
-      return m+':'+String(s).padStart(2,'0');
-    })(),
+    time:(mins===0&&secs===0)?null:mins+':'+String(secs).padStart(2,'0'),
     dist:parseInt(document.getElementById('inDist').value)||0,
     location:document.getElementById('inLocation').value.trim()||'Unknown',
     gear:document.getElementById('inGear').value||null,
@@ -605,11 +534,9 @@ async function saveEntry(){
     photo,user_id:sess.user.id
   };
   if(!entry.date)return toast('Please enter a date.',true);
-  if(isNaN(entry.temp)||entry.temp===null)return toast('Please enter a water temperature.',true);
-  if(entry.temp<-2||entry.temp>40)return toast('Temperature looks wrong (must be -2 to 40°C).',true);
-  const timeMins=parseInt(document.getElementById('inTimeMins').value)||0;
-  const timeSecs=parseInt(document.getElementById('inTimeSecs').value)||0;
-  if(timeSecs>59)return toast('Seconds must be 0–59.',true);
+  if(isNaN(entry.temp))return toast('Please enter a water temperature.',true);
+  if(entry.temp<-2||entry.temp>40)return toast('Temperature must be between -2 and 40C.',true);
+  if(secs>59)return toast('Seconds must be 0-59.',true);
   const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Saving...';setSS('syn','Saving...');
   try{
     if(eid){await sbFetch('swims?id=eq.'+eid,{method:'PATCH',body:JSON.stringify(entry)});toast('Swim updated!');}
@@ -653,25 +580,24 @@ function cancelEdit(){
   const p=document.getElementById('ppr');p.src='';p.style.display='none';
 }
 
-/* ── DELETE ── */
-function deleteEntry(id){pdel=id;document.getElementById('delMo').classList.add('open');}
-function closeDelMo(){document.getElementById('delMo').classList.remove('open');pdel=null;}
+function deleteEntry(id){pendingDel=id;document.getElementById('delMo').classList.add('open');}
+function closeDelMo(){document.getElementById('delMo').classList.remove('open');pendingDel=null;}
 document.getElementById('confDel').onclick=async()=>{
-  if(!pdel)return;setSS('syn','Deleting...');
-  try{await sbFetch('swims?id=eq.'+pdel,{method:'DELETE'});toast('Swim deleted');closeDelMo();await loadSwims();}
+  if(!pendingDel)return;setSS('syn','Deleting...');
+  try{await sbFetch('swims?id=eq.'+pendingDel,{method:'DELETE'});toast('Swim deleted');closeDelMo();await loadSwims();}
   catch(e){toast('Delete failed: '+e.message,true);}
 };
 document.getElementById('delMo').addEventListener('click',e=>{if(e.target===e.currentTarget)closeDelMo();});
 
-/* ── SORT & FILTER ── */
 function sortBy(key){
-  if(sk===key)sa=!sa;else{sk=key;sa=false;}
+  if(sortKey===key)sortAsc=!sortAsc;else{sortKey=key;sortAsc=false;}
   document.querySelectorAll('[id^="s-"]').forEach(el=>el.textContent='');
-  const el=document.getElementById('s-'+key);if(el)el.textContent=sa?' ^':' v';
+  const el=document.getElementById('s-'+key);if(el)el.textContent=sortAsc?' ^':' v';
   document.querySelectorAll('.tbl th').forEach(th=>th.classList.remove('sorted'));
   const mp={date:1,temp:2,time:3,dist:4};if(mp[key])document.querySelectorAll('.tbl th')[mp[key]].classList.add('sorted');
   applyFilters();
 }
+
 function applyFilters(){
   const txt=document.getElementById('filterText').value.toLowerCase();
   const loc=document.getElementById('filterLoc').value;
@@ -683,22 +609,19 @@ function applyFilters(){
     return true;
   });
   filtSwims.sort((a,b)=>{
-    let va=a[sk],vb=b[sk];
-    if(sk==='date'){va=new Date(va);vb=new Date(vb);}
-    if(sk==='time'){va=t2m(va);vb=t2m(vb);}
-    if(va<vb)return sa?-1:1;if(va>vb)return sa?1:-1;return 0;
+    let va=a[sortKey],vb=b[sortKey];
+    if(sortKey==='date'){va=new Date(va);vb=new Date(vb);}
+    if(sortKey==='time'){va=t2m(va);vb=t2m(vb);}
+    if(va<vb)return sortAsc?-1:1;if(va>vb)return sortAsc?1:-1;return 0;
   });
   document.getElementById('fcount').textContent=filtSwims.length===allSwims.length?allSwims.length+' swims':filtSwims.length+' / '+allSwims.length+' swims';
   renderStats(allSwims);renderTable();
 }
 
-/* ── RENDER ── */
 function renderStats(data){
   if(!data.length)return;
-  const td=data.reduce((a,s)=>a+(s.dist||0),0);
-  const tm=data.reduce((a,s)=>a+t2m(s.time),0);
-  const cold=Math.min(...data.map(s=>s.temp));
-  const warm=Math.max(...data.map(s=>s.temp));
+  const td=data.reduce((a,s)=>a+(s.dist||0),0),tm=data.reduce((a,s)=>a+t2m(s.time),0);
+  const cold=Math.min(...data.map(s=>s.temp)),warm=Math.max(...data.map(s=>s.temp));
   const h='<div class="stile" style="--bc:var(--rip)"><span class="ico">&#x1F3CA;</span><span class="v">'+data.length+'</span><span class="l">Swims</span></div>'+
     '<div class="stile" style="--bc:var(--alg)"><span class="ico">&#x1F4CF;</span><span class="v">'+(td/1000).toFixed(1)+'km</span><span class="l">Total Dist</span></div>'+
     '<div class="stile" style="--bc:var(--gld)"><span class="ico">&#x23F1;</span><span class="v">'+Math.round(tm)+'m</span><span class="l">Total Time</span></div>'+
@@ -715,108 +638,87 @@ function renderTable(){
   const maxD=Math.max(...filtSwims.map(s=>s.dist||0),1);
   body.innerHTML=filtSwims.map(s=>{
     const d=new Date(s.date);
-    const uk=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
-    const wd=d.toLocaleDateString('en-GB',{weekday:'short'});
-    const mu=ML[s.location]||('https://www.google.com/maps/search/'+encodeURIComponent(s.location));
+    const ukDate=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+    const wday=d.toLocaleDateString('en-GB',{weekday:'short'});
+    const mapUrl=ML[s.location]||('https://www.google.com/maps/search/'+encodeURIComponent(s.location));
     const pct=Math.round(((s.dist||0)/maxD)*100);
     const ph=s.photo?'<img src="'+s.photo+'" class="tmb" onclick="openLB(this.src)">':'<span class="np">-</span>';
     const nt=s.notes?'<span class="nt">'+esc(s.notes)+'</span>':'<span style="opacity:.2;font-size:.75rem">-</span>';
     return '<tr><td>'+ph+'</td>'+
-      '<td class="tdd"><strong>'+uk+'</strong><small>'+wd+'</small><div class="lr"><span>'+esc(s.location)+'</span><a href="'+mu+'" target="_blank">&#x1F4CD;</a></div></td>'+
+      '<td class="tdd"><strong>'+ukDate+'</strong><small>'+wday+'</small><div class="lr"><span>'+esc(s.location)+'</span><a href="'+mapUrl+'" target="_blank">&#x1F4CD;</a></div></td>'+
       '<td><span class="tbadge '+tc(s.temp)+'">'+tl(s.temp)+'</span></td>'+
       '<td>'+(s.time?s.time+'m':'--')+'</td>'+
       '<td><div class="dbw"><span style="min-width:38px">'+(s.dist?s.dist+'m':'--')+'</span><div class="dbo"><div class="dbi" style="width:'+pct+'%"></div></div></div></td>'+
       '<td>'+nt+'</td>'+
-      '<td><div class="ra"><button class="br2" onclick="editEntry(\''+s.id+'\')" title="Edit">&#x270F;</button><button class="br2" onclick="deleteEntry(\''+s.id+'\')" title="Delete">&#x1F5D1;</button></div></td></tr>';
+      '<td><div class="ra"><button class="br2" onclick="editEntry(''+s.id+'')" title="Edit">&#x270F;</button><button class="br2" onclick="deleteEntry(''+s.id+'')" title="Delete">&#x1F5D1;</button></div></td></tr>';
   }).join('');
 }
 
 function popFilters(){
   const locs=[...new Set(allSwims.map(s=>s.location))].sort();
   const yrs=[...new Set(allSwims.map(s=>s.date.slice(0,4)))].sort().reverse();
-  // Update filter dropdowns
-  const ls=document.getElementById('floc'),lv=ls.value;
+  const ls=document.getElementById('filterLoc'),lv=ls.value;
   ls.innerHTML='<option value="">All locations</option>'+locs.map(l=>'<option value="'+esc(l)+'"'+(l===lv?' selected':'')+'>'+esc(l)+'</option>').join('');
-  const ys=document.getElementById('fyr'),yv=ys.value;
+  const ys=document.getElementById('filterYear'),yv=ys.value;
   ys.innerHTML='<option value="">All years</option>'+yrs.map(y=>'<option value="'+y+'"'+(y===yv?' selected':'')+'>'+y+'</option>').join('');
-  // Update location datalist with user's own locations
   const dl=document.getElementById('locationList');
   const defaults=['Watersedge','Escape to the Lake','The Lenches','Wild Wood','Broadfields'];
-  const all_locs=[...new Set([...defaults,...locs])].sort();
-  dl.innerHTML=all_locs.map(l=>'<option value="'+esc(l)+'">').join('');
+  const allLocs=[...new Set([...defaults,...locs])].sort();
+  dl.innerHTML=allLocs.map(l=>'<option value="'+esc(l)+'">').join('');
 }
 
 function renderIns(){
   renderStats(allSwims);
   const mo={};
   allSwims.forEach(s=>{const mk=new Date(s.date).toLocaleDateString('en-GB',{month:'short',year:'numeric'});mo[mk]=(mo[mk]||0)+1;});
-  const srt=Object.entries(mo).sort((a,b)=>{
-    const p=str=>{const[mn,yr]=str.split(' ');const ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return new Date(+yr,ms.indexOf(mn));};
-    return p(b[0])-p(a[0]);
-  }).slice(0,8);
-  const maxM=Math.max(...srt.map(e=>e[1]));
+  const srt=Object.entries(mo).sort((a,b)=>{const p=str=>{const[mn,yr]=str.split(' ');const ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return new Date(+yr,ms.indexOf(mn));};return p(b[0])-p(a[0]);}).slice(0,8);
+  const maxM=Math.max(...srt.map(e=>e[1]),1);
   document.getElementById('mStats').innerHTML=srt.map(([m,c])=>'<div class="mrow"><span style="min-width:80px;font-size:.8rem">'+m+'</span><div class="mbo"><div class="mbi" style="width:'+(c/maxM*100)+'%"></div></div><span class="mc">'+c+' swim'+(c>1?'s':'')+'</span></div>').join('');
   if(!allSwims.length)return;
-  const td=allSwims.reduce((a,s)=>a+(s.dist||0),0);
-  const tm=allSwims.reduce((a,s)=>a+t2m(s.time),0);
-  const cold=Math.min(...allSwims.map(s=>s.temp));
-  const warm=Math.max(...allSwims.map(s=>s.temp));
-  const thisYear=new Date().getFullYear();
-  const skins=allSwims.filter(s=>s.gear==='Skins').length;
+  const td=allSwims.reduce((a,s)=>a+(s.dist||0),0),tm=allSwims.reduce((a,s)=>a+t2m(s.time),0);
+  const avgD=(td/allSwims.length).toFixed(0),avgT=(allSwims.reduce((a,s)=>a+s.temp,0)/allSwims.length).toFixed(1);
+  const cold=Math.min(...allSwims.map(s=>s.temp)),warm=Math.max(...allSwims.map(s=>s.temp));
+  const longest=Math.max(...allSwims.map(s=>s.dist||0)),lngSess=Math.max(...allSwims.map(s=>t2m(s.time)));
+  const ty=new Date().getFullYear(),tyn=allSwims.filter(s=>s.date.startsWith(ty)).length;
+  const sk=allSwims.filter(s=>s.gear==='Skins').length;
   document.getElementById('dynFacts').innerHTML=[
-    {i:'&#x1F4CF;',t:'Average swim: <strong>'+(td/allSwims.length).toFixed(0)+'m</strong>'},
-    {i:'&#x1F321;',t:'Average water temp: <strong>'+(allSwims.reduce((a,s)=>a+s.temp,0)/allSwims.length).toFixed(1)+'C</strong>'},
+    {i:'&#x1F4CF;',t:'Average swim: <strong>'+avgD+'m</strong>'},
+    {i:'&#x1F321;',t:'Average water temp: <strong>'+avgT+'C</strong>'},
     {i:'&#x1F321;',t:'Temp range: <strong>'+cold+'C - '+warm+'C</strong> ('+(warm-cold).toFixed(1)+' spread)'},
-    {i:'&#x1F3C5;',t:'Longest swim: <strong>'+Math.max(...allSwims.map(s=>s.dist||0))+'m</strong>'},
+    {i:'&#x1F3C5;',t:'Longest swim: <strong>'+longest+'m</strong>'},
+    {i:'&#x23F1;',t:'Longest session: <strong>'+Math.floor(lngSess)+'m '+Math.round((lngSess%1)*60)+'s</strong>'},
     {i:'&#x23F3;',t:'Total water time: <strong>'+Math.round(tm)+' mins</strong> ('+(tm/60).toFixed(1)+' hrs)'},
-    {i:'&#x1F3CA;',t:'This year ('+thisYear+'): <strong>'+allSwims.filter(s=>s.date.startsWith(thisYear)).length+' swims</strong>'},
-    skins?{i:'&#x1F4AA;',t:'Skin swims: <strong>'+skins+'</strong>'}:null
+    {i:'&#x1F3CA;',t:'This year ('+ty+'): <strong>'+tyn+' swims</strong>'},
+    sk?{i:'&#x1F4AA;',t:'Skin swims: <strong>'+sk+'</strong>'}:null
   ].filter(Boolean).map(f=>'<div class="frow"><span class="fi">'+f.i+'</span><span class="ft">'+f.t+'</span></div>').join('');
-  const mnths=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const bm=Array(12).fill(0);
-  allSwims.filter(s=>s.date.startsWith(thisYear)).forEach(s=>bm[new Date(s.date).getMonth()]++);
+  const mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const bm=Array(12).fill(0);allSwims.filter(s=>s.date.startsWith(ty)).forEach(s=>bm[new Date(s.date).getMonth()]++);
   const maxB=Math.max(...bm,1);
-  document.getElementById('yearBars').innerHTML=mnths.map((m,i)=>{const h=Math.max(4,Math.round((bm[i]/maxB)*90));return'<div class="mc2"><span class="mc2v" style="visibility:'+(bm[i]?'visible':'hidden')+'">'+bm[i]+'</span><div class="mc2b" style="height:'+h+'px;opacity:'+(bm[i]?1:.18)+'"></div><span class="mc2l">'+m+'</span></div>';}).join('');
+  document.getElementById('yearBars').innerHTML=mn.map((m,i)=>{const h=Math.max(4,Math.round((bm[i]/maxB)*90));return'<div class="mc2"><span class="mc2v" style="visibility:'+(bm[i]?'visible':'hidden')+'">'+bm[i]+'</span><div class="mc2b" style="height:'+h+'px;opacity:'+(bm[i]?1:.18)+'"></div><span class="mc2l">'+m+'</span></div>';}).join('');
 }
 
-/* ── LIGHTBOX ── */
 function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open');}
 function closeLB(){document.getElementById('lb').classList.remove('open');}
 
-/* ── EXPORT / IMPORT ── */
-function exportCSV(){
-  const h='Date,Location,Temp_C,Duration,Distance_m,Gear,Notes';
-  const rows=allSwims.map(s=>'"'+s.date+'","'+s.location+'",'+s.temp+',"'+(s.time||'')+'",'+( s.dist||0)+',"'+(s.gear||'')+'","'+((s.notes||'').replace(/"/g,'""'))+'"');
-  dl([h,...rows].join('\n'),'open-water-journal.csv','text/csv');toast('CSV exported!');
-}
-function exportJSON(){
-  dl(JSON.stringify(allSwims.map(s=>({...s,photo:s.photo?'[photo omitted]':null})),null,2),'open-water-journal.json','application/json');toast('JSON exported!');
-}
+function exportCSV(){const h='Date,Location,Temp_C,Duration,Distance_m,Gear,Notes';const rows=allSwims.map(s=>'"'+s.date+'","'+s.location+'",'+s.temp+',"'+(s.time||'')+'",'+( s.dist||0)+',"'+(s.gear||'')+'","'+((s.notes||'').replace(/"/g,'""'))+'"');dl([h,...rows].join('\n'),'open-water-journal.csv','text/csv');toast('CSV exported!');}
+function exportJSON(){dl(JSON.stringify(allSwims.map(s=>({...s,photo:s.photo?'[photo omitted]':null})),null,2),'open-water-journal.json','application/json');toast('JSON exported!');}
 async function doImport(input){
   if(!input.files[0])return;
   const reader=new FileReader();
   reader.onload=async e=>{
     try{
-      const data=JSON.parse(e.target.result);
-      if(!Array.isArray(data))throw new Error('Expected a JSON array');
-      if(!confirm('Import '+data.length+' swims into your account?'))return;
+      const data=JSON.parse(e.target.result);if(!Array.isArray(data))throw new Error('Expected array');
+      if(!confirm('Import '+data.length+' swims to your account?'))return;
       const clean=data.map(s=>({date:s.date,temp:parseFloat(s.temp),time:s.time||null,dist:parseInt(s.dist)||0,location:s.location||'Unknown',gear:s.gear||null,notes:s.notes||null,photo:null,user_id:sess.user.id})).filter(s=>s.date&&!isNaN(s.temp));
-      await sbFetch('swims',{method:'POST',body:JSON.stringify(clean)});
-      toast('Imported '+clean.length+' swims!');await loadSwims();
+      await sbFetch('swims',{method:'POST',body:JSON.stringify(clean)});toast('Imported '+clean.length+' swims!');await loadSwims();
     }catch(e){toast('Import failed: '+e.message,true);}
-  };
-  reader.readAsText(input.files[0]);input.value='';
+  };reader.readAsText(input.files[0]);input.value='';
 }
 
-/* ── INIT ── */
 (async function(){
   const stored=localStorage.getItem('owj_s');
   if(stored){
-    try{
-      const s=JSON.parse(stored);
-      const ok=await refreshSess(s.refresh_token);
-      if(ok){enterApp();return;}
-    }catch{}
+    try{const s=JSON.parse(stored);const ok=await refreshSess(s.refresh_token);if(ok){enterApp();return;}}catch{}
   }
   document.getElementById('authScreen').style.display='flex';
 })();
