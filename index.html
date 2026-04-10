@@ -16,7 +16,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--mist);mi
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:100vh;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(13,107,158,.45) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(26,163,200,.2) 0%,transparent 55%),linear-gradient(170deg,#0a1628 0%,#0d2540 45%,#0a1e38 100%);z-index:-2;pointer-events:none}
 body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='120'%3E%3Cpath d='M0 60 Q75 20 150 60 Q225 100 300 60 Q375 20 450 60 Q525 100 600 60' fill='none' stroke='rgba(26,163,200,0.04)' stroke-width='2'/%3E%3C/svg%3E");background-size:600px 120px;z-index:-1;animation:ws 20s linear infinite;pointer-events:none;opacity:.6}
 @keyframes ws{from{background-position:0 0}to{background-position:600px 0}}
- 
+
 /* AUTH */
 #authScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 .auth-box{width:100%;max-width:420px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:40px 36px;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(10,22,40,.4)}
@@ -41,7 +41,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .auth-ok.show{display:block}
 .forgot{text-align:center;margin-top:14px}
 .forgot a{font-size:.78rem;color:var(--rip);text-decoration:none;cursor:pointer}
- 
+
 /* APP */
 #mainApp{display:none}
 .app{max-width:1140px;margin:0 auto;padding:0 20px 60px}
@@ -60,7 +60,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .sync-s{font-size:.72rem;color:var(--foam);opacity:.5;display:flex;align-items:center;gap:5px}
 .btn-g{background:var(--g);border:1px solid var(--gb);color:var(--foam);padding:9px 16px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;backdrop-filter:blur(10px)}
 .btn-g:hover{background:var(--gb);color:var(--wht)}
- 
+
 /* CLAIM BANNER */
 .claim-banner{background:rgba(200,147,10,.12);border:1px solid rgba(200,147,10,.3);border-radius:var(--rs);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .claim-banner p{font-size:.85rem;color:#f0b429;line-height:1.4}
@@ -68,7 +68,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .btn-claim{background:linear-gradient(135deg,var(--gld),#e8a012);color:var(--wht);border:none;padding:10px 18px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .2s}
 .btn-claim:hover{opacity:.85}
 .btn-claim:disabled{opacity:.5;cursor:not-allowed}
- 
+
 /* TABS */
 .tabs{display:flex;gap:4px;background:rgba(255,255,255,.05);border-radius:50px;padding:4px;margin-bottom:28px;border:1px solid rgba(255,255,255,.08);max-width:460px}
 .tab{flex:1;padding:9px 14px;border-radius:50px;border:none;background:none;color:rgba(168,223,240,.6);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .25s;white-space:nowrap}
@@ -78,7 +78,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .gc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);backdrop-filter:blur(20px)}
 .gc.el{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);box-shadow:0 20px 60px rgba(10,22,40,.3)}
- 
+
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin-bottom:24px}
 .stile{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--rs);padding:16px 12px;text-align:center;position:relative;overflow:hidden;transition:transform .2s}
@@ -87,7 +87,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .stile .v{display:block;font-size:1.4rem;font-weight:600;color:var(--wht);line-height:1.1;font-family:'Playfair Display',serif}
 .stile .l{display:block;font-size:.62rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--foam);opacity:.6;margin-top:4px}
 .stile .ico{font-size:1rem;margin-bottom:4px;display:block}
- 
+
 /* FORM */
 .lf{padding:24px;margin-bottom:24px}
 .lf h2{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--foam);margin-bottom:18px}
@@ -112,7 +112,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .btn-s{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--foam);padding:13px 18px;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:.9rem;cursor:pointer;transition:background .2s}
 .btn-s:hover{background:rgba(255,255,255,.12)}
 .lf.editing{border-color:rgba(26,163,200,.4)!important;background:rgba(26,163,200,.06)!important}
- 
+
 /* FILTER */
 .fbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
 .fbar input,.fbar select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:50px;color:var(--foam);padding:8px 16px;font-family:'DM Sans',sans-serif;font-size:.82rem;outline:none}
@@ -120,7 +120,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .fbar input::placeholder{color:rgba(168,223,240,.4)}
 .fbar select option{background:#0d2540}
 .fc2{margin-left:auto;font-size:.78rem;color:var(--foam);opacity:.5;white-space:nowrap}
- 
+
 /* TABLE */
 .tw{overflow-x:auto;border-radius:var(--r)}
 .tbl{width:100%;border-collapse:collapse;min-width:600px}
@@ -156,7 +156,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .empty{text-align:center;padding:60px 20px;color:var(--foam);opacity:.4}
 .empty .emo{font-size:3rem;display:block;margin-bottom:12px}
 .lrow td{text-align:center;padding:40px;color:var(--foam);opacity:.5;font-size:.9rem}
- 
+
 /* INSIGHTS */
 .ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
 .ic{padding:20px}
@@ -178,13 +178,13 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .mc2b{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(to top,var(--water),var(--rip));min-height:2px}
 .mc2l{font-size:.6rem;color:var(--foam);opacity:.5}
 .mc2v{font-size:.65rem;color:var(--foam);opacity:.7;font-weight:600}
- 
+
 /* LIGHTBOX */
 .lb{display:none;position:fixed;inset:0;background:rgba(10,22,40,.92);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(20px);cursor:pointer}
 .lb.open{display:flex;animation:fi2 .2s}
 @keyframes fi2{from{opacity:0}to{opacity:1}}
 .lb img{max-width:90vw;max-height:85vh;border-radius:var(--r)}
- 
+
 /* MODAL */
 .mo{display:none;position:fixed;inset:0;background:rgba(10,22,40,.85);z-index:1000;align-items:flex-end;justify-content:center;backdrop-filter:blur(12px)}
 .mo.open{display:flex}
@@ -195,12 +195,12 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .mba{display:flex;gap:10px}
 .btn-d{background:rgba(224,92,75,.2);border:1px solid rgba(224,92,75,.4);color:#f08060;padding:11px 20px;border-radius:var(--rs);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem}
 .btn-d:hover{background:rgba(224,92,75,.35)}
- 
+
 /* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(13,107,158,.95);color:var(--wht);padding:12px 24px;border-radius:50px;font-size:.85rem;font-weight:500;z-index:9000;transition:transform .35s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.15)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .toast.err{background:rgba(224,92,75,.95)}
- 
+
 /* EXPORT */
 .ep{padding:24px}
 .ep h2{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--foam);margin-bottom:16px}
@@ -210,7 +210,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 .ec .ei{font-size:2rem;display:block;margin-bottom:8px}
 .ec .et{font-size:.82rem;font-weight:600;color:var(--wht)}
 .ec .ed{font-size:.72rem;color:var(--foam);opacity:.55;margin-top:3px}
- 
+
 @media print{body{background:white;color:#111}body::before,body::after,.tabs,.lf,.fbar,.ra,.hdr-r,#authScreen{display:none!important}}
 @media(max-width:640px){.tbl th:nth-child(4),.tbl td:nth-child(4),.tbl th:nth-child(5),.tbl td:nth-child(5){display:none}.tabs{max-width:100%}.ig{grid-template-columns:1fr}}
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -218,7 +218,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 </style>
 </head>
 <body>
- 
+
 <!-- AUTH SCREEN -->
 <div id="authScreen">
   <div class="auth-box">
@@ -231,21 +231,21 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
     </div>
     <div id="authErr" class="auth-err"></div>
     <div id="authOk" class="auth-ok"></div>
- 
+
     <div id="fSI">
       <div class="af"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email"></div>
       <div class="af"><label>Password</label><input type="password" id="siPw" placeholder="Your password" autocomplete="current-password" onkeydown="if(event.key==='Enter')signIn()"></div>
       <button class="btn-auth" id="btnSI" onclick="signIn()">Sign In &#x2192;</button>
       <div class="forgot"><a onclick="showTab('fr')">Forgot password?</a></div>
     </div>
- 
+
     <div id="fSU" style="display:none">
       <div class="af"><label>Email</label><input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email"></div>
       <div class="af"><label>Password</label><input type="password" id="suPw" placeholder="Min 6 characters" autocomplete="new-password"></div>
       <div class="af"><label>Confirm Password</label><input type="password" id="suPw2" placeholder="Repeat password" autocomplete="new-password" onkeydown="if(event.key==='Enter')signUp()"></div>
       <button class="btn-auth" id="btnSU" onclick="signUp()">Create Account &#x2192;</button>
     </div>
- 
+
     <div id="fFR" style="display:none">
       <p style="font-size:.85rem;color:var(--foam);opacity:.7;margin-bottom:16px;line-height:1.5">Enter your email and we'll send a reset link.</p>
       <div class="af"><label>Email</label><input type="email" id="frEmail" placeholder="you@example.com"></div>
@@ -254,7 +254,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
     </div>
   </div>
 </div>
- 
+
 <!-- MAIN APP -->
 <div id="mainApp">
 <div class="app">
@@ -269,18 +269,18 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
       <button class="btn-g" onclick="signOut()">Sign Out</button>
     </div>
   </header>
- 
+
   <div class="claim-banner" id="claimBanner" style="display:none">
     <p>&#x1F44B; Welcome! There are <strong id="claimCount">0</strong> historical swims not yet linked to any account.</p>
     <button class="btn-claim" id="claimBtn" onclick="claimSwims()">Claim My Swims &#x2192;</button>
   </div>
- 
+
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this,'journal')">&#x1F4CB; Journal</button>
     <button class="tab" onclick="switchTab(this,'insights')">&#x1F4CA; Insights</button>
     <button class="tab" onclick="switchTab(this,'export')">&#x2B07; Export</button>
   </div>
- 
+
   <div class="panel active" id="panel-journal">
     <div class="gc el lf" id="logForm">
       <h2 id="formTitle">&#x1F3CA; Log a New Swim</h2>
@@ -326,7 +326,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
         <button class="btn-s" id="cancelBtn" style="display:none" onclick="cancelEdit()">Cancel</button>
       </div>
     </div>
- 
+
     <div class="stats" id="statsStrip"></div>
     <div class="fbar">
       <input type="text" id="filterText" placeholder="Search notes or location..." oninput="applyFilters()" style="flex:1;min-width:180px">
@@ -349,7 +349,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
       </table>
     </div>
   </div>
- 
+
   <div class="panel" id="panel-insights">
     <div class="stats" id="statsIns"></div>
     <div class="ig">
@@ -358,7 +358,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
     </div>
     <div class="gc yc"><h3>Activity This Year</h3><div class="mbs" id="yearBars"></div></div>
   </div>
- 
+
   <div class="panel" id="panel-export">
     <div class="gc ep">
       <h2>Export Your Data</h2>
@@ -373,7 +373,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
   </div>
 </div>
 </div>
- 
+
 <div class="lb" id="lb" onclick="closeLB()"><img id="lbImg" src="" alt=""></div>
 <div class="mo" id="delMo">
   <div class="mb">
@@ -386,14 +386,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
   </div>
 </div>
 <div class="toast" id="toast"></div>
- 
+
 <script>
 const SB='https://drhgubxbuaqoujlmmzbh.supabase.co';
 const AK='sb_publishable_MtB-fZpicnbTEp4Nb5iN7g_fRGmfdr3';
 const ML={'Watersedge':'https://www.google.com/maps/search/Watersedge+Pershore','Escape to the Lake':'https://www.google.com/maps/search/Escape+to+the+Lake+Worcester','The Lenches':'https://www.google.com/maps/search/Lenches+Lakes+Evesham','Wild Wood':'https://www.google.com/maps/search/Wild+Wood+Leigh+Sinton','Broadfields':'https://www.google.com/maps/search/Broadfields+Wild+Swimming'};
- 
+
 let sess=null,allSwims=[],filtSwims=[],sk='date',sa=false,pdel=null;
- 
+
 /* ── AUTH API ── */
 async function aFetch(path,body){
   const r=await fetch(SB+'/auth/v1/'+path,{method:'POST',headers:{'Content-Type':'application/json','apikey':AK},body:JSON.stringify(body)});
@@ -407,14 +407,14 @@ async function sbFetch(path,opts={}){
   if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||e.hint||'HTTP '+r.status);}
   const t=await r.text();return t?JSON.parse(t):null;
 }
- 
+
 /* ── SESSION ── */
 function saveSess(s){sess=s;s?localStorage.setItem('owj_s',JSON.stringify(s)):localStorage.removeItem('owj_s');}
 async function refreshSess(rt){
   try{const d=await aFetch('token?grant_type=refresh_token',{refresh_token:rt});saveSess({access_token:d.access_token,refresh_token:d.refresh_token,user:d.user});return true;}
   catch{return false;}
 }
- 
+
 /* ── AUTH UI ── */
 function showTab(t){
   ['SI','SU','FR'].forEach(x=>{document.getElementById('f'+x).style.display='none';});
@@ -427,7 +427,7 @@ function showTab(t){
 function setAErr(m){const e=document.getElementById('authErr');e.textContent=m;e.classList.add('show');document.getElementById('authOk').classList.remove('show');}
 function setAOk(m){const e=document.getElementById('authOk');e.textContent=m;e.classList.add('show');document.getElementById('authErr').classList.remove('show');}
 function clearAMsg(){document.getElementById('authErr').classList.remove('show');document.getElementById('authOk').classList.remove('show');}
- 
+
 async function signIn(){
   const em=document.getElementById('siEmail').value.trim(),pw=document.getElementById('siPw').value;
   if(!em||!pw)return setAErr('Please enter your email and password.');
@@ -436,7 +436,7 @@ async function signIn(){
   catch(e){setAErr(e.message);}
   finally{btn.disabled=false;btn.textContent='Sign In \u2192';}
 }
- 
+
 async function signUp(){
   const em=document.getElementById('suEmail').value.trim(),p1=document.getElementById('suPw').value,p2=document.getElementById('suPw2').value;
   if(!em)return setAErr('Please enter your email.');
@@ -450,14 +450,14 @@ async function signUp(){
   }catch(e){setAErr(e.message);}
   finally{btn.disabled=false;btn.textContent='Create Account \u2192';}
 }
- 
+
 async function sendReset(){
   const em=document.getElementById('frEmail').value.trim();
   if(!em)return setAErr('Please enter your email.');
   try{await aFetch('recover',{email:em});setAOk('Reset email sent! Check your inbox.');}
   catch(e){setAErr(e.message);}
 }
- 
+
 async function signOut(){
   try{await fetch(SB+'/auth/v1/logout',{method:'POST',headers:{'apikey':AK,'Authorization':'Bearer '+sess.access_token}});}catch{}
   saveSess(null);allSwims=[];filtSwims=[];
@@ -465,7 +465,7 @@ async function signOut(){
   document.getElementById('authScreen').style.display='flex';
   document.getElementById('siEmail').value='';document.getElementById('siPw').value='';
 }
- 
+
 /* ── ENTER APP ── */
 function enterApp(){
   document.getElementById('authScreen').style.display='none';
@@ -476,43 +476,45 @@ function enterApp(){
   document.getElementById('inDate').value=new Date().toISOString().split('T')[0];
   loadSwims();checkClaim();
 }
- 
+
 /* ── CLAIM ── */
 async function checkClaim(){
-  try{
-    // Must use anon key directly — user JWT cannot see rows where user_id IS NULL (RLS blocks it)
-    const r=await fetch(SB+'/rest/v1/swims?user_id=is.null&select=id',{
-      headers:{'apikey':SK,'Authorization':'Bearer '+SK,'Prefer':'count=exact'}
-    });
-    const d=await r.json();
-    const n=Array.isArray(d)?d.length:0;
-    if(n>0){
-      document.getElementById('claimCount').textContent=n;
-      document.getElementById('claimBanner').style.display='flex';
-    } else {
-      document.getElementById('claimBanner').style.display='none';
-    }
-  }catch(e){console.warn('checkClaim error:',e);}
+  // Show claim banner only if this user has zero swims of their own.
+  // We can't query NULL user_id rows directly (RLS blocks it), so instead:
+  // if user has 0 swims → they probably haven't claimed yet → show banner.
+  const banner = document.getElementById('claimBanner');
+  if(all.length === 0){
+    banner.style.display='flex';
+  } else {
+    banner.style.display='none';
+  }
 }
 async function claimSwims(){
   const btn=document.getElementById('claimBtn');btn.disabled=true;btn.textContent='Claiming...';
   try{
-    await sbFetch('swims?user_id=is.null',{method:'PATCH',body:JSON.stringify({user_id:sess.user.id})});
+    // Call our Supabase RPC function which runs as SECURITY DEFINER
+    // so it can update rows where user_id IS NULL
+    const r=await fetch(SB+'/rest/v1/rpc/claim_swims',{
+      method:'POST',
+      headers:{'apikey':SK,'Authorization':'Bearer '+sess.access_token,'Content-Type':'application/json'},
+      body:JSON.stringify({claiming_user_id:sess.user.id})
+    });
+    if(!r.ok){const e=await r.json();throw new Error(e.message||e.hint||'Claim failed');}
     document.getElementById('claimBanner').style.display='none';
     toast('All historical swims claimed to your account!');
     await loadSwims();
-  }catch(e){toast('Claim failed: '+e.message,true);btn.disabled=false;btn.textContent='Claim My Swims \u2192';}
+  }catch(e){toast('Claim failed: '+e.message,true);btn.disabled=false;btn.textContent='Claim My Swims →';}
 }
- 
+
 /* ── SYNC ── */
 function setSS(s,l){const d=document.getElementById('sdot');d.className='sdot'+(s==='off'?' off':s==='syn'?' syn':'');document.getElementById('slbl').textContent=l;}
- 
+
 async function loadSwims(){
   setSS('syn','Loading...');
   try{const d=await sbFetch('swims?select=*&order=date.desc');allSwims=d||[];setSS('on',allSwims.length+' swims synced');popFilters();applyFilters();}
   catch(e){setSS('off','Error');toast('Could not load: '+e.message,true);document.getElementById('swimBody').innerHTML='<tr class="lrow"><td colspan="7">Could not connect to database.</td></tr>';}
 }
- 
+
 /* ── HELPERS ── */
 function t2m(s){if(!s)return 0;const[m,sc]=String(s).split(':').map(Number);return m+(sc||0)/60;}
 function tc(t){if(t<=5)return't-ice';if(t<=10)return't-cold';if(t<=15)return't-cool';if(t<=20)return't-warm';return't-hot';}
@@ -520,7 +522,7 @@ function tl(t){if(t<=5)return t.toFixed(1)+'C (Ice)';if(t>=25)return t.toFixed(1
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function toast(msg,e=false,d=3000){const el=document.getElementById('toast');el.textContent=msg;el.className='toast show'+(e?' err':'');setTimeout(()=>el.classList.remove('show'),d);}
 function dl(c,f,t){const b=new Blob([c],{type:t});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=f;a.click();URL.revokeObjectURL(a.href);}
- 
+
 /* ── TABS ── */
 function switchTab(btn,n){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -528,11 +530,11 @@ function switchTab(btn,n){
   btn.classList.add('active');document.getElementById('panel-'+n).classList.add('active');
   if(n==='insights')renderIns();
 }
- 
+
 /* ── FORM ── */
 function toggleCL(s){document.getElementById('clWrap').style.display=s.value==='__other__'?'':'none';}
 function prevImg(i){const p=document.getElementById('ppr');if(i.files&&i.files[0]){const r=new FileReader();r.onload=e=>{p.src=e.target.result;p.style.display='block';};r.readAsDataURL(i.files[0]);}}
- 
+
 async function saveEntry(){
   const eid=document.getElementById('editId').value;
   const ls=document.getElementById('inLocation').value;
@@ -562,7 +564,7 @@ async function saveEntry(){
   }catch(e){toast('Save failed: '+e.message,true);setSS('off','Save failed');}
   finally{btn.disabled=false;}
 }
- 
+
 function editEntry(id){
   const s=allSwims.find(x=>x.id===id);if(!s)return;
   document.getElementById('editId').value=id;
@@ -582,7 +584,7 @@ function editEntry(id){
   document.getElementById('cancelBtn').style.display='';
   window.scrollTo({top:0,behavior:'smooth'});
 }
- 
+
 function cancelEdit(){
   document.getElementById('editId').value='';
   document.getElementById('formTitle').textContent='Log a New Swim';
@@ -598,7 +600,7 @@ function cancelEdit(){
   const p=document.getElementById('ppr');p.src='';p.style.display='none';
   document.getElementById('clWrap').style.display='none';
 }
- 
+
 /* ── DELETE ── */
 function deleteEntry(id){pdel=id;document.getElementById('delMo').classList.add('open');}
 function closeDelMo(){document.getElementById('delMo').classList.remove('open');pdel=null;}
@@ -608,7 +610,7 @@ document.getElementById('confDel').onclick=async()=>{
   catch(e){toast('Delete failed: '+e.message,true);}
 };
 document.getElementById('delMo').addEventListener('click',e=>{if(e.target===e.currentTarget)closeDelMo();});
- 
+
 /* ── SORT & FILTER ── */
 function sortBy(key){
   if(sk===key)sa=!sa;else{sk=key;sa=false;}
@@ -637,7 +639,7 @@ function applyFilters(){
   document.getElementById('fcount').textContent=filtSwims.length===allSwims.length?allSwims.length+' swims':filtSwims.length+' / '+allSwims.length+' swims';
   renderStats(allSwims);renderTable();
 }
- 
+
 /* ── RENDER ── */
 function renderStats(data){
   if(!data.length)return;
@@ -654,7 +656,7 @@ function renderStats(data){
   document.getElementById('statsStrip').innerHTML=h;
   document.getElementById('statsIns').innerHTML=h;
 }
- 
+
 function renderTable(){
   const body=document.getElementById('swimBody');
   if(!filtSwims.length){body.innerHTML='<tr><td colspan="7"><div class="empty"><span class="emo">&#x1F30A;</span><p>No swims found. Log your first plunge above!</p></div></td></tr>';return;}
@@ -676,7 +678,7 @@ function renderTable(){
       '<td><div class="ra"><button class="br2" onclick="editEntry(\''+s.id+'\')" title="Edit">&#x270F;</button><button class="br2" onclick="deleteEntry(\''+s.id+'\')" title="Delete">&#x1F5D1;</button></div></td></tr>';
   }).join('');
 }
- 
+
 function popFilters(){
   const locs=[...new Set(allSwims.map(s=>s.location))].sort();
   const yrs=[...new Set(allSwims.map(s=>s.date.slice(0,4)))].sort().reverse();
@@ -685,7 +687,7 @@ function popFilters(){
   const ys=document.getElementById('filterYear'),yv=ys.value;
   ys.innerHTML='<option value="">All years</option>'+yrs.map(y=>'<option value="'+y+'"'+(y===yv?' selected':'')+'>'+y+'</option>').join('');
 }
- 
+
 function renderIns(){
   renderStats(allSwims);
   const mo={};
@@ -718,11 +720,11 @@ function renderIns(){
   const maxB=Math.max(...bm,1);
   document.getElementById('yearBars').innerHTML=mnths.map((m,i)=>{const h=Math.max(4,Math.round((bm[i]/maxB)*90));return'<div class="mc2"><span class="mc2v" style="visibility:'+(bm[i]?'visible':'hidden')+'">'+bm[i]+'</span><div class="mc2b" style="height:'+h+'px;opacity:'+(bm[i]?1:.18)+'"></div><span class="mc2l">'+m+'</span></div>';}).join('');
 }
- 
+
 /* ── LIGHTBOX ── */
 function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open');}
 function closeLB(){document.getElementById('lb').classList.remove('open');}
- 
+
 /* ── EXPORT / IMPORT ── */
 function exportCSV(){
   const h='Date,Location,Temp_C,Duration,Distance_m,Gear,Notes';
@@ -747,7 +749,7 @@ async function doImport(input){
   };
   reader.readAsText(input.files[0]);input.value='';
 }
- 
+
 /* ── INIT ── */
 (async function(){
   const stored=localStorage.getItem('owj_s');
@@ -758,6 +760,11 @@ async function doImport(input){
       if(ok){enterApp();return;}
     }catch{}
   }
+  document.getElementById('authScreen').style.display='flex';
+})();
+</script>
+</body>
+</html>
   document.getElementById('authScreen').style.display='flex';
 })();
 </script>
