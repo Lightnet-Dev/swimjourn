@@ -205,7 +205,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 <body>
 
 <!-- AUTH -->
-<div id="authScreen">
+<div id="authScreen" style="display:flex">
   <div class="auth-box">
     <div class="auth-logo">&#x1F30A;</div>
     <h1>Open Water Journal</h1>
@@ -238,7 +238,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
 </div>
 
 <!-- MAIN APP -->
-<div id="mainApp">
+<div id="mainApp" style="display:none">
 <div class="app">
   <header class="hdr">
     <div class="brand">
@@ -582,6 +582,16 @@ function cancelEdit(){
 
 function deleteEntry(id){pendingDel=id;document.getElementById('delMo').classList.add('open');}
 function closeDelMo(){document.getElementById('delMo').classList.remove('open');pendingDel=null;}
+// Table row action delegation - avoids quote escaping issues in dynamic HTML
+document.getElementById('swimBody').addEventListener('click', function(e) {
+  const btn = e.target.closest('.br2');
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (!id) return;
+  if (btn.dataset.action === 'edit') editEntry(id);
+  if (btn.dataset.action === 'del') deleteEntry(id);
+});
+
 document.getElementById('confDel').onclick=async()=>{
   if(!pendingDel)return;setSS('syn','Deleting...');
   try{await sbFetch('swims?id=eq.'+pendingDel,{method:'DELETE'});toast('Swim deleted');closeDelMo();await loadSwims();}
@@ -650,7 +660,7 @@ function renderTable(){
       '<td>'+(s.time?s.time+'m':'--')+'</td>'+
       '<td><div class="dbw"><span style="min-width:38px">'+(s.dist?s.dist+'m':'--')+'</span><div class="dbo"><div class="dbi" style="width:'+pct+'%"></div></div></div></td>'+
       '<td>'+nt+'</td>'+
-      '<td><div class="ra"><button class="br2" onclick="editEntry(''+s.id+'')" title="Edit">&#x270F;</button><button class="br2" onclick="deleteEntry(''+s.id+'')" title="Delete">&#x1F5D1;</button></div></td></tr>';
+      '<td><div class="ra"><button class="br2" data-id="'+s.id+'" data-action="edit" title="Edit">&#x270F;</button><button class="br2" data-id="'+s.id+'" data-action="del" title="Delete">&#x1F5D1;</button></div></td></tr>';
   }).join('');
 }
 
@@ -718,7 +728,19 @@ async function doImport(input){
 (async function(){
   const stored=localStorage.getItem('owj_s');
   if(stored){
-    try{const s=JSON.parse(stored);const ok=await refreshSess(s.refresh_token);if(ok){enterApp();return;}}catch{}
+    try{
+      const s=JSON.parse(stored);
+      // Add 5s timeout so a slow/failed refresh doesn't hang the page
+      const refreshWithTimeout=new Promise((resolve,reject)=>{
+        setTimeout(()=>reject(new Error('Timeout')),5000);
+        refreshSess(s.refresh_token).then(resolve).catch(reject);
+      });
+      const ok=await refreshWithTimeout;
+      if(ok){enterApp();return;}
+    }catch(e){
+      console.warn('Session refresh failed:',e.message);
+      localStorage.removeItem('owj_s');
+    }
   }
   document.getElementById('authScreen').style.display='flex';
 })();
