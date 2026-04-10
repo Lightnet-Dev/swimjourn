@@ -289,7 +289,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
         <div class="f"><label>Date</label><input type="date" id="inDate"></div>
         <div class="f">
           <label>Location</label>
-          <select id="inLocation" onchange="toggleCL(this)">
+          <select id="inLocation">
             <option value="Watersedge">Watersedge</option>
             <option value="Escape to the Lake">Escape to the Lake</option>
             <option value="The Lenches">The Lenches</option>
@@ -298,9 +298,8 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-i
             <option value="__other__">Other...</option>
           </select>
         </div>
-        <div class="f" id="clWrap" style="display:none"><label>Custom Location</label><input type="text" id="inCL" placeholder="Enter name"></div>
         <div class="f"><label>Temp C</label><input type="number" id="inTemp" step="0.1" placeholder="14.5"></div>
-        <div class="f"><label>Duration mm:ss</label><input type="text" id="inTime" placeholder="28:30"></div>
+        <div class="f"><label>Duration mm:ss</label><span style="display:none"></span></div>
         <div class="f"><label>Distance (m)</label><input type="number" id="inDist" step="10" placeholder="800"></div>
         <div class="f">
           <label>Gear</label>
@@ -532,30 +531,77 @@ function switchTab(btn,n){
 }
 
 /* ── FORM ── */
-function toggleCL(s){document.getElementById('clWrap').style.display=s.value==='__other__'?'':'none';}
-function prevImg(i){const p=document.getElementById('ppr');if(i.files&&i.files[0]){const r=new FileReader();r.onload=e=>{p.src=e.target.result;p.style.display='block';};r.readAsDataURL(i.files[0]);}}
+function toggleCL(s){}  // location uses datalist now
+function prevImg(input){
+  const p=document.getElementById('ppr');
+  if(!input.files||!input.files[0])return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const img=new Image();
+    img.onload=function(){
+      const MAX=800;
+      let w=img.width,h=img.height;
+      if(w>MAX||h>MAX){if(w>h){h=Math.round(h*(MAX/w));w=MAX;}else{w=Math.round(w*(MAX/h));h=MAX;}}
+      const canvas=document.createElement('canvas');
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const resized=canvas.toDataURL('image/jpeg',0.82);
+      p.src=resized;p.style.display='block';
+      input._resized=resized;
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
 
 async function saveEntry(){
   const eid=document.getElementById('editId').value;
   const ls=document.getElementById('inLocation').value;
-  const cl=document.getElementById('inCL').value.trim();
   const file=document.getElementById('inPhoto').files[0];
   const photo=await new Promise(res=>{
-    if(file){const r=new FileReader();r.onloadend=()=>res(r.result);r.readAsDataURL(file);}
-    else res(eid?(allSwims.find(s=>s.id===eid)||{}).photo:null);
+    if(file&&file._resized){
+      // Use the already-resized version from prevImg
+      res(file._resized);
+    } else if(file){
+      // Fallback: resize now if prevImg wasn't called (e.g. programmatic)
+      const r=new FileReader();
+      r.onloadend=()=>{
+        const img=new Image();
+        img.onload=()=>{
+          const MAX=800;let w=img.width,h=img.height;
+          if(w>MAX||h>MAX){if(w>h){h=Math.round(h*(MAX/w));w=MAX;}else{w=Math.round(w*(MAX/h));h=MAX;}}
+          const c=document.createElement('canvas');c.width=w;c.height=h;
+          c.getContext('2d').drawImage(img,0,0,w,h);
+          res(c.toDataURL('image/jpeg',0.82));
+        };
+        img.src=r.result;
+      };
+      r.readAsDataURL(file);
+    } else {
+      res(eid?(allSwims.find(s=>s.id===eid)||{}).photo:null);
+    }
   });
   const entry={
     date:document.getElementById('inDate').value,
     temp:parseFloat(document.getElementById('inTemp').value),
-    time:document.getElementById('inTime').value.trim()||null,
+    time:(()=>{
+      const m=parseInt(document.getElementById('inTimeMins').value)||0;
+      const s=parseInt(document.getElementById('inTimeSecs').value)||0;
+      if(m===0&&s===0)return null;
+      return m+':'+String(s).padStart(2,'0');
+    })(),
     dist:parseInt(document.getElementById('inDist').value)||0,
-    location:ls==='__other__'?(cl||'Unknown'):ls,
+    location:document.getElementById('inLocation').value.trim()||'Unknown',
     gear:document.getElementById('inGear').value||null,
     notes:document.getElementById('inNotes').value.trim()||null,
     photo,user_id:sess.user.id
   };
-  if(!entry.date)return alert('Please enter a date.');
-  if(isNaN(entry.temp))return alert('Please enter a water temperature.');
+  if(!entry.date)return toast('Please enter a date.',true);
+  if(isNaN(entry.temp)||entry.temp===null)return toast('Please enter a water temperature.',true);
+  if(entry.temp<-2||entry.temp>40)return toast('Temperature looks wrong (must be -2 to 40°C).',true);
+  const timeMins=parseInt(document.getElementById('inTimeMins').value)||0;
+  const timeSecs=parseInt(document.getElementById('inTimeSecs').value)||0;
+  if(timeSecs>59)return toast('Seconds must be 0–59.',true);
   const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Saving...';setSS('syn','Saving...');
   try{
     if(eid){await sbFetch('swims?id=eq.'+eid,{method:'PATCH',body:JSON.stringify(entry)});toast('Swim updated!');}
@@ -569,11 +615,10 @@ function editEntry(id){
   const s=allSwims.find(x=>x.id===id);if(!s)return;
   document.getElementById('editId').value=id;
   document.getElementById('inDate').value=s.date;
-  const kl=ML[s.location]?s.location:'__other__';
-  document.getElementById('inLocation').value=kl;
-  if(kl==='__other__'){document.getElementById('inCL').value=s.location;document.getElementById('clWrap').style.display='';}
+  document.getElementById('inLocation').value=s.location||'';
   document.getElementById('inTemp').value=s.temp;
-  document.getElementById('inTime').value=s.time||'';
+  if(s.time){const[em,es]=s.time.split(':');document.getElementById('inTimeMins').value=em||'';document.getElementById('inTimeSecs').value=es||'';}
+  else{document.getElementById('inTimeMins').value='';document.getElementById('inTimeSecs').value='';}
   document.getElementById('inDist').value=s.dist||'';
   document.getElementById('inGear').value=s.gear||'';
   document.getElementById('inNotes').value=s.notes||'';
@@ -593,12 +638,11 @@ function cancelEdit(){
   document.getElementById('cancelBtn').style.display='none';
   document.getElementById('logForm').classList.remove('editing');
   document.getElementById('inDate').value=new Date().toISOString().split('T')[0];
-  ['inTemp','inTime','inDist','inNotes','inCL'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('inLocation').value='Watersedge';
+  ['inTemp','inTimeMins','inTimeSecs','inDist','inNotes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('inLocation').value='';
   document.getElementById('inGear').value='';
   document.getElementById('inPhoto').value='';
   const p=document.getElementById('ppr');p.src='';p.style.display='none';
-  document.getElementById('clWrap').style.display='none';
 }
 
 /* ── DELETE ── */
@@ -665,7 +709,7 @@ function renderTable(){
     const d=new Date(s.date);
     const uk=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
     const wd=d.toLocaleDateString('en-GB',{weekday:'short'});
-    const mu=ML[s.location]||'https://www.google.com/maps/search/'+encodeURIComponent(s.location);
+    const mu=ML[s.location]||('https://www.google.com/maps/search/'+encodeURIComponent(s.location));
     const pct=Math.round(((s.dist||0)/maxD)*100);
     const ph=s.photo?'<img src="'+s.photo+'" class="tmb" onclick="openLB(this.src)">':'<span class="np">-</span>';
     const nt=s.notes?'<span class="nt">'+esc(s.notes)+'</span>':'<span style="opacity:.2;font-size:.75rem">-</span>';
@@ -682,10 +726,16 @@ function renderTable(){
 function popFilters(){
   const locs=[...new Set(allSwims.map(s=>s.location))].sort();
   const yrs=[...new Set(allSwims.map(s=>s.date.slice(0,4)))].sort().reverse();
-  const ls=document.getElementById('filterLoc'),lv=ls.value;
+  // Update filter dropdowns
+  const ls=document.getElementById('floc'),lv=ls.value;
   ls.innerHTML='<option value="">All locations</option>'+locs.map(l=>'<option value="'+esc(l)+'"'+(l===lv?' selected':'')+'>'+esc(l)+'</option>').join('');
-  const ys=document.getElementById('filterYear'),yv=ys.value;
+  const ys=document.getElementById('fyr'),yv=ys.value;
   ys.innerHTML='<option value="">All years</option>'+yrs.map(y=>'<option value="'+y+'"'+(y===yv?' selected':'')+'>'+y+'</option>').join('');
+  // Update location datalist with user's own locations
+  const dl=document.getElementById('locationList');
+  const defaults=['Watersedge','Escape to the Lake','The Lenches','Wild Wood','Broadfields'];
+  const all_locs=[...new Set([...defaults,...locs])].sort();
+  dl.innerHTML=all_locs.map(l=>'<option value="'+esc(l)+'">').join('');
 }
 
 function renderIns(){
